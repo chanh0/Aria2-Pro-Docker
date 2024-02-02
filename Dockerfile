@@ -13,7 +13,9 @@
 
 FROM p3terx/s6-alpine
 
-RUN apk add --no-cache jq findutils && \
+RUN apk add --update docker openrc \
+    RUN rc-update add docker boot \
+    apk add --no-cache jq findutils && \
     curl -fsSL git.io/aria2c.sh | bash && \
     rm -rf /var/cache/apk/* /tmp/*
 
@@ -30,7 +32,7 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=1 \
     DISK_CACHE= \
     IPV6_MODE= \
     UMASK_SET= \
-    SPECIAL_MODE=
+    SPECIAL_MODE=rclone
 
 EXPOSE \
     6800 \
