@@ -14,7 +14,7 @@
 FROM p3terx/s6-alpine
 
 RUN apk add --update docker openrc \
-    RUN rc-update add docker boot \
+    rc-update add docker boot \
     apk add --no-cache jq findutils && \
     curl -fsSL git.io/aria2c.sh | bash && \
     rm -rf /var/cache/apk/* /tmp/*
